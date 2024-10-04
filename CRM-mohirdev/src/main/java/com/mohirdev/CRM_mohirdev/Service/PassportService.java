@@ -10,8 +10,11 @@ import java.util.Optional;
 
 @Service
 public class PassportService {
-    @Autowired
-    private PassportRepository passportRepository;
+    private final PassportRepository passportRepository;
+
+    public PassportService(PassportRepository passportRepository) {
+        this.passportRepository = passportRepository;
+    }
 
 
     public Passport create(Passport passport) {

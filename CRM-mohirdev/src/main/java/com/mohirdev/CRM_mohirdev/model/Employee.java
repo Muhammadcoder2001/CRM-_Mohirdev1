@@ -27,7 +27,7 @@ public class Employee {
     private Integer age;
     @ManyToMany
     @JoinTable(
-            name = "dev_employee_project",
+            name = "employees_passport",
             joinColumns = {@JoinColumn(name = "mohirdev_employees_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "passport_id", referencedColumnName = "id")})
     private Set<Passport> passport;

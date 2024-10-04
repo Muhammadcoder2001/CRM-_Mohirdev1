@@ -14,24 +14,27 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class PassportController {
 
-    @Autowired
-    private PassportService service;
+    private final PassportService passportService;
+
+    public PassportController(PassportService passportService) {
+        this.passportService = passportService;
+    }
 
     @PostMapping("/passports")
     public ResponseEntity<?> register(@RequestBody Passport passport) {
-        Passport result = service.create(passport);
+        Passport result = passportService.create(passport);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/passports")
     public ResponseEntity<List<Passport>> getAllPassports() {
-        List<Passport> result = service.getAllPassports();
+        List<Passport> result = passportService.getAllPassports();
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/passports/{id}")
     public ResponseEntity<?> getPassportById(@PathVariable Long id) {
-        Passport result = service.getPassport(id);
+        Passport result = passportService.getPassport(id);
             return ResponseEntity.ok(result);
     }
 
@@ -40,15 +43,15 @@ public class PassportController {
         if(passport.getId() == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Passport id is null");
         }else
-            service.update(passport, id);
+            passportService.update(passport, id);
         return ResponseEntity.ok(passport);
     }
 
     @DeleteMapping("/passports/{id}")
     public ResponseEntity<?> deletePassport(@PathVariable Long id) {
-        Passport result = service.getPassport(id);
+        Passport result = passportService.getPassport(id);
      try{
-         service.delete(result);
+         passportService.delete(result);
          return ResponseEntity.ok("Passport is deleted successfully");
      }catch(Exception e){
          return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

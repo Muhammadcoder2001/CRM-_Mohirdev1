@@ -2,7 +2,6 @@ package com.mohirdev.CRM_mohirdev.Service;
 
 import com.mohirdev.CRM_mohirdev.Repository.EmployeeRepository;
 import com.mohirdev.CRM_mohirdev.model.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,22 +9,25 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    @Autowired
-    private EmployeeRepository repository;
+    private final EmployeeRepository employeerepository;
+
+    public EmployeeService(EmployeeRepository employeerepository) {
+        this.employeerepository = employeerepository;
+    }
 
     public Employee createEmployee(Employee employee) {
-        return repository.save(employee);
+        return employeerepository.save(employee);
     }
     public Employee getEmployee(Long id) {
-        return repository.findById(id).get();
+        return employeerepository.findById(id).get();
     }
 
     public List<Employee> getAllEmployees() {
-        return repository.findAll();
+        return employeerepository.findAll();
     }
 
     public Employee updateEmployee(Long id, Employee employee) {
-        Employee result = repository.findById(id).get();
+        Employee result = employeerepository.findById(id).get();
         result.setName(employee.getName());
         result.setSalary(employee.getSalary());
         result.setAddress(employee.getAddress());
@@ -36,16 +38,16 @@ public class EmployeeService {
         result.setRoles(employee.getRoles());
         result.setLast_name(employee.getLast_name());
         result.setSurname(employee.getSurname());
-        return repository.save(result);
+        return employeerepository.save(result);
 
     }
 
-    public List<Employee> getEmployeeByLastName(String keyword) {
-        return repository.findByParam(keyword);
-    }
+//    public List<Employee> getByParam(String keyword) {
+//        return employeerepository.searchKeyword(keyword);
+//    }
 
     public void deleteEmployee(Long id) {
-        repository.deleteById(id);
+        employeerepository.deleteById(id);
     }
 
 }

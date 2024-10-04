@@ -1,1 +1,17 @@
-spring.application.name=CRM-mohirdev
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/CRM
+    username: muhammadcoder
+    password: 1234
+
+  jpa:
+    properties:
+      hibernate:
+        spring:
+          jpa:
+            database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update

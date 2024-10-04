@@ -10,15 +10,13 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-    @Query("SELECT p FROM Employee p WHERE " +
-    " LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-    " LOWER(p.last_name) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-    " LOWER(p.surname) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-    " LOWER(p.age) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-    " LOWER(p.roles) LIKE LOWER(CONCAT('%', :keyword, '%') ) OR " +
-    " LOWER(p.department) LIKE LOWER(CONCAT('%', :keyword, '%') ) OR " +
-    " LOWER(p.id) LIKE LOWER(CONCAT('%', :keyword, '%') ) OR " +
-    " LOWER(p.salary) LIKE LOWER(CONCAT('%', :keyword, '%') ) OR " +
-    " LOWER(p.address) LIKE LOWER(CONCAT('%', :keyword, '%')) ")
-    List<Employee> findByParam(@Param("keyword") String keyword);
+
+//    @Query("SELECT p FROM Employee p WHERE " +
+//    " LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
+//    " LOWER(p.last_name) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
+//    " LOWER(p.surname) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
+//    " LOWER(p.roles) LIKE LOWER(CONCAT('%', :keyword, '%') ) OR " +
+//    " LOWER(p.department) LIKE LOWER(CONCAT('%', :keyword, '%') ) OR " +
+//    " LOWER(p.address) LIKE LOWER(CONCAT('%', :keyword, '%')) ")
+//  public  List<Employee> searchKeyword(@Param("keyword") String keyword);
 }

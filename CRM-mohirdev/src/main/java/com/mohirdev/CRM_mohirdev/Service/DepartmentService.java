@@ -10,30 +10,33 @@ import java.util.List;
 @Service
 public class DepartmentService {
 
-    @Autowired
-    private DepartmentRepository repository;
+    private final DepartmentRepository departmentRepository;
+
+    public DepartmentService(DepartmentRepository departmentRepository) {
+        this.departmentRepository = departmentRepository;
+    }
 
     public Department getDepartment(Long id) {
-        return repository.findById(id).get();
+        return departmentRepository.findById(id).get();
     }
 
     public List<Department> getAllDepartments() {
-        return repository.findAll();
+        return departmentRepository.findAll();
     }
 
     public  void deleteDepartment(Long id) {
-        repository.deleteById(id);
+        departmentRepository.deleteById(id);
     }
 
     public Department saveDepartment(Department department) {
-        return repository.save(department);
+        return departmentRepository.save(department);
     }
 
     public Department updateDepartment(Department department, Long id) {
-        Department result = repository.findById(id).get();
+        Department result = departmentRepository.findById(id).get();
         result.setDepartment_id(department.getDepartment_id());
         result.setDepartment_name(department.getDepartment_name());
-        return repository.save(result);
+        return departmentRepository.save(result);
     }
 
 }
